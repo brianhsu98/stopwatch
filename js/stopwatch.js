@@ -37,9 +37,9 @@ var Stopwatch = function () {
      * @param elapsed: The time elapsed in seconds.
      */
     this.formatTime = function(elapsed) {
-        var hours = Math.floor(elapsed / (60 * 60));
-        var minutes = Math.floor(elapsed % (60 * 60) / 60);
-        var seconds = Math.floor(elapsed % (60 * 60 * 60));
+        var hours = Math.floor(elapsed / 3600);
+        var minutes = Math.floor(elapsed % 3600 / 60);
+        var seconds = Math.floor(elapsed % 3600 % 60);
         if (hours === 0) {
             hours = "00"
         } else if (hours < 10) {
@@ -56,5 +56,10 @@ var Stopwatch = function () {
             seconds = "0" + seconds.toString();
         }
         return hours + ":" + minutes + ":" + seconds
+    };
+
+    this.getStartTime = function() {
+        return startTime;
     }
+
 };
