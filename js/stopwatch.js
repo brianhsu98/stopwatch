@@ -8,12 +8,17 @@ var Stopwatch = function () {
     var running = false;
 
     this.start = function() {
-        startTime = new Date().getTime();
+        if (!running) {
+            startTime = new Date().getTime();
+            running = true;
+        }
     };
 
     this.stop = function() {
-        endTime = new Date().getTime();
-        running = false;
+        if (running) {
+            endTime = new Date().getTime();
+            running = false;
+        }
     };
 
     /**
@@ -22,7 +27,7 @@ var Stopwatch = function () {
     this.update = function() {
         if (running) {
             var currentTime = new Date().getTime();
-            var elapsed = Math.floor((currentTimeTime - startTime) / 1000);
+            var elapsed = Math.floor((currentTime - startTime) / 1000);
             return this.formatTime(elapsed);
         }
     };
@@ -33,7 +38,7 @@ var Stopwatch = function () {
      */
     this.formatTime = function(elapsed) {
         var hours = Math.floor(elapsed / (60 * 60));
-        var minutes = Math.floor(elapsed % (60 * 60) / (60 * 60));
+        var minutes = Math.floor(elapsed % (60 * 60) / 60);
         var seconds = Math.floor(elapsed % (60 * 60 * 60));
         if (hours === 0) {
             hours = "00"
