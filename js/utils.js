@@ -5,9 +5,11 @@
  * Loads rows from localstorage, if they exist.
  */
 function loadLocalStorage() {
+    console.log(localStorage.rows);
     if (storageAvailable('localStorage')) {
-        rows = JSON.parse(localStorage.rows);
-        updateTable(rows);
+        if (localStorage.rows !== undefined)
+            rows = JSON.parse(localStorage.rows);
+            updateTable(rows);
     }
 }
 
