@@ -6,17 +6,10 @@ go-between for the user-facing HTML and the JS stopwatch.
 /* Contains all the rows made for the table */
 var rows = [];
 
-var testData = [
-    {
-        'startLocation': "dsfa",
-        'stopLocation': "adsf",
-        'startTime': "asdhjkf",
-        'endTime': "adshjfk",
-        'timeElapsed': "asdhjfk"
-    }
-];
+var updateTable = function() {
+    $("#table").bootstrapTable('load', rows);
+};
 
-$("#table").bootstrapTable('load', testData);
 /**
  * Returns an object literal with the desired fields
  */
