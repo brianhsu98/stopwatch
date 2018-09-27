@@ -6,18 +6,38 @@ var Stopwatch = function () {
     var startTime;
     var endTime;
     var running = false;
+    var startLocation;
+    var stopLocation;
 
-    this.start = function() {
+    this.start = function(callback) {
         if (!running) {
             startTime = new Date().getTime();
             running = true;
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    startLocation = position.coords.latitude.toString() + ", " + position.coords.longitude.toString()
+                    callback(startLocation);
+                });
+            } else {
+                startLocation = ["N/A", "N/A"];
+                callback(startLocation);
+            }
         }
     };
 
-    this.stop = function() {
+    this.stop = function(callback) {
         if (running) {
             endTime = new Date().getTime();
             running = false;
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    stopLocation = position.coords.latitude.toString() + ", " + position.coords.longitude.toString()
+                    callback(stopLocation);
+                });
+            } else {
+                stopLocation = ["N/A", "N/A"];
+                callback(stopLocation)
+            }
         }
     };
 
@@ -58,8 +78,26 @@ var Stopwatch = function () {
         return hours + ":" + minutes + ":" + seconds
     };
 
+    /* Accessor Functions */
+
     this.getStartTime = function() {
         return startTime;
+    };
+
+    this.getEndTime = function() {
+        return endTime;
+    };
+
+    this.getStartLocation = function() {
+        return startLocation;
+    };
+
+    this.getStopLocation = function() {
+        return stopLocation;
+    };
+
+    this.isRunning = function() {
+        return running;
     }
 
 };
