@@ -2,8 +2,6 @@ A basic stopwatch web application, with a start/stop button and a history table.
 
 Take a look at a live demo [here](https://brianhsu.me/stopwatch/).
 
-Part of an application for Clicktime's Software Development Internship
-
 ## Functionality
 - Uses HTML5 Geolocation to get the current latitude and longitude
 - Stores and reports the time zone of where the start and stop buttons were clicked
@@ -30,6 +28,20 @@ To deploy, simply place all the contents of the `stopwatch` directory into a web
 Click the start button to start the stopwatch, and the stop button to stop the stopwatch.
 
 Click the reset button, located beneath the table, to delete all contents of the table.
+
+## Tour of the Files and Libraries
+### Files
+- `index.html`: The homepage for the web application. Doesn't contain anything fancy.
+- `js/main.js`: Essentially the central control hub. Calls functions from `utils.js`, initializes the stopwatch
+in `js/stopwatch.js`, handles interactions between the stopwatch and the buttons, and updates the table.
+- `js/utils.js`: Contains functions called by `main.js` to update the table, among other things.
+- `js/stopwatch.js`: Contains the stopwatch object, which has a number of useful methods.
+
+### Libraries
+- Bootstrap for making things pretty
+- jQuery to make many, many things relating to manipulating the DOM easier
+- bootstrap-table mostly for its very helpful `load` function
+
 
 ## Assumptions
 - I assumed that latitude and logitude could be rounded to the nearest hundredth place. The geolocation module provides
