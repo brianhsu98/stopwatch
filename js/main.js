@@ -6,8 +6,11 @@ go-between for the user-facing HTML and the JS stopwatch.
 /* Contains all the rows. One row is created every time start/stop is clicked. */
 var rows = [];
 
+
 /* Functions called when buttons are clicked */
 $(document).ready(function () {
+    loadLocalStorage();
+
     var stopwatch = new Stopwatch();
     var currentRow;
     var updateWatch;
@@ -38,7 +41,7 @@ $(document).ready(function () {
     });
     $("#reset").click(function() {
         rows = [];
-        updateTable();
+        updateTable(rows);
     })
 });
 

@@ -1,12 +1,22 @@
 /* Various Utility functions, mostly used in main.js */
 
+
+/**
+ * Loads rows from localstorage, if they exist.
+ */
+function loadLocalStorage() {
+    if (storageAvailable('localStorage')) {
+        rows = JSON.parse(localStorage.rows);
+        updateTable(rows);
+    }
+}
+
 /**
  * Updates the table with the data in rows
  * @param rows A list of object literals, generated using makeRow below.
  */
-var updateTable = function(rows) {
+function updateTable(rows) {
     if (storageAvailable('localStorage')) {
-        console.log(JSON.stringify(rows));
         localStorage.rows = JSON.stringify(rows);
     }
     $("#table").bootstrapTable('load', rows);
