@@ -81,11 +81,11 @@ var Stopwatch = function () {
     /* Accessor Functions */
 
     this.getStartTime = function() {
-        return startTime;
+        return new Date(startTime).toString();
     };
 
     this.getEndTime = function() {
-        return endTime;
+        return new Date(endTime).toString();
     };
 
     this.getStartLocation = function() {
