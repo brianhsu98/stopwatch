@@ -35,7 +35,8 @@ var Stopwatch = function () {
                     function(error) { // If geolocation is blocked
                         startLocation = "N/A, N/A";
                         callback(startLocation);
-                });
+                    },
+                    {timeout: 1000});
             } else {
                 startLocation = "N/A, N/A";
                 callback(startLocation);
@@ -64,7 +65,8 @@ var Stopwatch = function () {
                     function(error) {
                         stopLocation = "N/A, N/A";
                         callback(stopLocation);
-                    }
+                    },
+                    {timeout: 1000}
                     );
             } else {
                 stopLocation = "N/A, N/A";

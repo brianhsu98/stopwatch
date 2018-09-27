@@ -42,7 +42,6 @@ in `js/stopwatch.js`, handles interactions between the stopwatch and the buttons
 - jQuery to make many, many things relating to manipulating the DOM easier
 - bootstrap-table mostly for its very helpful `load` function
 
-
 ## Assumptions
 - I assumed that latitude and logitude could be rounded to the nearest hundredth place. The geolocation module provides
 much more precision, but having long numbers with many decimals was nonaesthetically appealing. Displaying more decimal
@@ -53,6 +52,7 @@ time elapsed using the difference between two `getTime`s, I assumed that shiftin
 - I assumed that start/stop location should be left as N/A, N/A if geolocation failed
 - I assumed that location should be displayed in latitude, longitude format
 - I assumed that both the stopwatch and the Time Elapsed column should take the format HH:MM:SS
+- I assumed that if geolocation took more than 1 second, then the location would fail to be found.
 
 
 ## TODO:

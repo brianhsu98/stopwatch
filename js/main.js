@@ -16,7 +16,7 @@ $(document).ready(function () {
     var updateWatch;
     $("#start").click(function() {
         if (!stopwatch.isRunning()) { // Assumes that stopwatch cannot start until it has been stopped
-            stopwatch.start(function (startLocation) {
+            stopwatch.start(function (startLocation) { // Requires location to be returned before a row is formed
                 currentRow = makeRow(startLocation, "N/A, N/A", stopwatch.getStartTime(), "N/A", "N/A");
                 rows.push(currentRow);
                 updateTable(rows);
@@ -31,7 +31,7 @@ $(document).ready(function () {
         if (stopwatch.isRunning()) {
             clearInterval(updateWatch);
             var timeElapsed = stopwatch.update();
-            stopwatch.stop(function (stopLocation) {
+            stopwatch.stop(function (stopLocation) { // Requires location to be returned before a row is formed
                 currentRow.stopLocation = stopLocation;
                 currentRow.endTime = stopwatch.getEndTime();
                 currentRow.timeElapsed = timeElapsed;
