@@ -15,7 +15,9 @@ var Stopwatch = function () {
             running = true;
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    startLocation = position.coords.latitude.toString() + ", " + position.coords.longitude.toString()
+                    var latitude = Math.round(position.coords.latitude * 100) / 100;
+                    var longitude = Math.round(position.coords.longitude * 100) / 100;
+                    startLocation = latitude.toString() + ", " + longitude.toString();
                     callback(startLocation);
                 });
             } else {
@@ -31,8 +33,10 @@ var Stopwatch = function () {
             running = false;
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    stopLocation = position.coords.latitude.toString() + ", " + position.coords.longitude.toString()
-                    callback(stopLocation);
+                    var latitude = Math.round(position.coords.latitude * 100) / 100;
+                    var longitude = Math.round(position.coords.longitude * 100) / 100;
+                    startLocation = latitude.toString() + ", " + longitude.toString();
+                    callback(startLocation);
                 });
             } else {
                 stopLocation = ["N/A", "N/A"];
@@ -81,11 +85,11 @@ var Stopwatch = function () {
     /* Accessor Functions */
 
     this.getStartTime = function() {
-        return new Date(startTime).toString();
+        return new Date(startTime).toLocaleString();
     };
 
     this.getEndTime = function() {
-        return new Date(endTime).toString();
+        return new Date(endTime).toLocaleString();
     };
 
     this.getStartLocation = function() {

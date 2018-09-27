@@ -6,6 +6,7 @@ go-between for the user-facing HTML and the JS stopwatch.
 /* Contains all the rows made for the table */
 var rows = [];
 
+/* Updates the table with the data in rows */
 var updateTable = function() {
     $("#table").bootstrapTable('load', rows);
 };
@@ -33,7 +34,7 @@ $(document).ready(function () {
             stopwatch.start(function (startLocation) {
                 currentRow = makeRow(startLocation, "N/A, N/A", stopwatch.getStartTime(), "N/A", "N/A");
                 rows.push(currentRow);
-                $("#table").bootstrapTable('load', rows);
+                updateTable();
             });
             updateWatch = setInterval(function () {
                 var time = stopwatch.update();
@@ -53,5 +54,8 @@ $(document).ready(function () {
             });
         }
     });
+    $("#reset").click(function() {
+
+    })
 });
 
