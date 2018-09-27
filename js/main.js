@@ -6,25 +6,6 @@ go-between for the user-facing HTML and the JS stopwatch.
 /* Contains all the rows. One row is created every time start/stop is clicked. */
 var rows = [];
 
-/* Updates the table with the data in ROWS */
-var updateTable = function() {
-    $("#table").bootstrapTable('load', rows);
-};
-
-/**
- * Returns an object literal formatted for loading into the Bootstrap table
- */
-function makeRow(startLocation, stopLocation, startTime, endTime, timeElapsed) {
-    return {
-        'startLocation': startLocation,
-        'stopLocation': stopLocation,
-        'startTime': startTime,
-        'endTime': endTime,
-        'timeElapsed': timeElapsed
-    }
-}
-
-
 /* Functions called when buttons are clicked */
 $(document).ready(function () {
     var stopwatch = new Stopwatch();
@@ -35,7 +16,7 @@ $(document).ready(function () {
             stopwatch.start(function (startLocation) {
                 currentRow = makeRow(startLocation, "N/A, N/A", stopwatch.getStartTime(), "N/A", "N/A");
                 rows.push(currentRow);
-                updateTable();
+                updateTable(rows);
             });
             updateWatch = setInterval(function () { // Updates stopwatch every 100 milliseconds.
                 var time = stopwatch.update();
@@ -51,7 +32,7 @@ $(document).ready(function () {
                 currentRow.stopLocation = stopLocation;
                 currentRow.endTime = stopwatch.getEndTime();
                 currentRow.timeElapsed = timeElapsed;
-                updateTable();
+                updateTable(rows);
             });
         }
     });
