@@ -1,5 +1,6 @@
 A basic stopwatch web application, with a start/stop button and a history table.
-Demo here: 
+
+Take a look at a live demo [here](https://brianhsu.me/stopwatch/).
 
 Part of an application for Clicktime's Software Development Internship
 
